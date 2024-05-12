@@ -1,0 +1,41 @@
+<div class="col-lg-4 col-md-5">
+  <div class="blog__sidebar">
+    <div class="blog__sidebar__search">
+      <form action="#" onsubmit="updateQuery('keyword', keyword)" method="GET">
+        <input type="text" name="keyword" placeholder="Search..." required>
+        <button type="submit"><span class="icon_search"></span></button>
+      </form>
+    </div>
+    
+    <div class="blog__sidebar__item">
+      <h4>Categories</h4>
+      <ul>
+        <li><a href="/">All</a></li>
+        {{#each layoutCategories}}
+        <li><a href="#" onclick="updateQuery('category', '{{dataValues.categoryId}}')">{{ dataValues.name }} ({{ dataValues.blogCount }})</a></li>
+        {{/each}}
+      </ul>
+    </div>
+
+    <div class="blog__sidebar__item">
+      <h4>Search By Tags</h4>
+      <div class="blog__sidebar__item__tags">
+        {{#each layoutTags}}
+        <a href="#" onclick="updateQuery('tag', '{{id}}')">{{ name }}</a>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const updateQuery = (key, value) => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get(key)) {
+      urlParams.set(key, value);
+    } else {
+      urlParams.append(key, value);
+    }
+    window.location.href = `/?${urlParams.toString()}`;
+  }
+</script>

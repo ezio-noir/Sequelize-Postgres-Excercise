@@ -1,0 +1,36 @@
+<div class="col-lg-8 col-md-7">
+  <div class="row">
+    {{#each blogs}}
+    <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="blog__item">
+            <div class="blog__item__pic">
+                <img src="{{imagePath}}" alt="">
+            </div>
+            <div class="blog__item__text">
+                <ul>
+                    <li><i class="fa fa-calendar-o"></i> {{formatDate createdAt}}</li>
+                    <li><i class="fa fa-comment-o"></i> {{commentCount}}</li>
+                </ul>
+                <h5><a href="/blogs/{{id}}">{{title}}</a></h5>
+                <p>{{summary}}</p>
+                <a href="/blogs/{{id}}" class="blog__btn">READ MORE <span
+                        class="arrow_right"></span></a>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+    <div class="col-lg-12">
+        <div id="pagination" aria-label="Page navigation example">
+            {{{ createPagination pagination paginationClass="product__pagination blog__pagination" leftText='<i class="fa fa-long-arrow-left"></i>' rightText='<i class="fa fa-long-arrow-right"></i>'}}}
+        </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    document.querySelectorAll('#pagination li').forEach((li, index) => {
+        li.style.listStyleType = 'none';
+        li.style.display = 'inline-block';
+        li.style.marginRight = '30px';
+    });
+</script>
